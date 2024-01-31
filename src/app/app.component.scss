@@ -1,17 +1,116 @@
-.example-spacer {
-  flex: 1 1 auto;
+@mixin height-width($height, $width) {
+  height: $height;
+  width: $width;
 }
 
-.flex-container {
+@mixin flex-center {
   display: flex;
-  justify-content: start;
+  justify-content: center;
+  align-items: center;
 }
 
-.example-card {
-  max-width: 25rem;
+.home-container {
+  @include flex-center;
+  @include height-width(100vh, 100vw);
+  background: gray;
 }
 
-.example-header-image {
-  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-  background-size: cover;
+.heavy-container {
+  @include flex-center;
+  @include height-width(100vh, 100vw);
+  flex-direction: column;
+  background: #e0e0e0;
+}
+
+.footer-container {
+  @include flex-center;
+  @include height-width(100vh, 100vw);
+  background: yellow;
+}
+
+.container {
+  @include flex-center;
+  @include height-width(100vh, 100vw);
+}
+
+.trigger-container {
+  @include flex-center;
+  @include height-width(100vh, 100vw);
+  background: coral;
+}
+
+.loading-container {
+  @include flex-center;
+  @include height-width(100vh, 100vw);
+  background: #e0e0e0;
+  color: yellow;
+}
+
+.placeholder-container {
+  @include height-width(100vh, 100%);
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+
+  .title {
+    width: 40%;
+  }
+  .link {
+    width: 60%;
+  }
+  .description {
+    width: 70%;
+  }
+  .shimmer {
+    padding: 5px;
+    width: 100%;
+    height: 120px;
+    margin: 10px auto;
+    background: #ffffff;
+  }
+  .shimmer .image-card {
+    height: 90px;
+    width: 90px;
+    float: right;
+    border-radius: 8px;
+  }
+  .stroke {
+    height: 15px;
+    background: #777;
+    margin-top: 20px;
+  }
+
+  .wrapper {
+    width: 0px;
+    animation: fullView 0.5s forwards linear;
+  }
+
+  @keyframes fullView {
+    100% {
+      width: 100%;
+    }
+  }
+  .animate {
+    animation: shimmer 3s;
+    animation-iteration-count: infinite;
+    background: linear-gradient(to right, #e6e6e6 5%, #cccccc 25%, #e6e6e6 35%);
+    background-size: 1000px 100%;
+  }
+  @keyframes shimmer {
+    from {
+      background-position: -1000px 0;
+    }
+    to {
+      background-position: 1000px 0;
+    }
+  }
+}
+
+.error {
+  @include flex-center;
+  @include height-width(100vh, 100vw);
+  color: black;
+  background: red;
+  font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
 }

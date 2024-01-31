@@ -1,1 +1,71 @@
-<p>test</p>
+<section class="home-container">
+  <app-home-component />
+</section>
+
+<section class="trigger-container" (click)="shouldLoadHeavyComponent = true">
+  <button>
+    <a href="#trigger">trigger</a>
+  </button>
+</section>
+<!-- <section #trigger class="trigger-container">trigger</section> -->
+
+@defer (when shouldLoadHeavyComponent; prefetch on idle) {
+<section class="heavy-container">
+  <app-heavy-component />
+</section>
+} @placeholder {
+<section class="placeholder-container">
+  <div class="shimmer">
+    <div class="wrapper">
+      <div class="image-card animate"></div>
+      <div class="stroke animate title"></div>
+      <div class="stroke animate link"></div>
+      <div class="stroke animate description"></div>
+    </div>
+  </div>
+  <div class="shimmer">
+    <div class="wrapper">
+      <div class="image-card animate"></div>
+      <div class="stroke animate title"></div>
+      <div class="stroke animate link"></div>
+      <div class="stroke animate description"></div>
+    </div>
+  </div>
+  <div class="shimmer">
+    <div class="wrapper">
+      <div class="image-card animate"></div>
+      <div class="stroke animate title"></div>
+      <div class="stroke animate link"></div>
+      <div class="stroke animate description"></div>
+    </div>
+  </div>
+  <div class="shimmer">
+    <div class="wrapper">
+      <div class="image-card animate"></div>
+      <div class="stroke animate title"></div>
+      <div class="stroke animate link"></div>
+      <div class="stroke animate description"></div>
+    </div>
+  </div>
+  <div class="shimmer">
+    <div class="wrapper">
+      <div class="image-card animate"></div>
+      <div class="stroke animate title"></div>
+      <div class="stroke animate link"></div>
+      <div class="stroke animate description"></div>
+    </div>
+  </div>
+</section>
+} @loading(minimum 5s) {
+<section class="loading-container">
+  <p>still Loading...</p>
+</section>
+} @error {
+<section class="error">
+  <p><strong>404</strong> - Page not found!</p>
+</section>
+}
+
+<section class="footer-container">
+  <app-footer-component />
+</section>
