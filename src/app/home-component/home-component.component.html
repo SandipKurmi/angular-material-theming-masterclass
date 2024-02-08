@@ -6,4 +6,30 @@
 
   <!-- user.age -->
   <span> Age : {{ user.age }} </span>
+
+  <!-- data -->
+
+  <!-- countList -->
+
+  @for (coutn of countList; track $index) {
+  <span>{{ coutn }}</span>
+
+  }
+
+  <!-- userInformation in list -->
+
+  <ul class="padding">
+    @for (user of userInformation; track $index) {
+    <li>
+      <span>{{ user.name }}</span>
+      <span>{{ user.age }}</span>
+    </li>
+    }
+
+    <button (click)="pushNumber()">Add Number</button>
+
+    <h1>
+      {{ subjectData }}
+    </h1>
+  </ul>
 </div>
