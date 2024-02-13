@@ -1,22 +1,12 @@
 <div id="home-container">
   <p>home-component works!</p>
 
-  <!-- user.name -->
   <span> Name : {{ user.name }} </span>
-
-  <!-- user.age -->
   <span> Age : {{ user.age }} </span>
-
-  <!-- data -->
-
-  <!-- countList -->
 
   @for (coutn of countList; track $index) {
   <span>{{ coutn }}</span>
-
   }
-
-  <!-- userInformation in list -->
 
   <ul class="padding">
     @for (user of userInformation; track $index) {
@@ -28,8 +18,33 @@
 
     <button (click)="pushNumber()">Add Number</button>
 
-    <h1>
-      {{ subjectData }}
-    </h1>
+    <input
+      type="text"
+      [formControl]="searchInput"
+      placeholder="start to type"
+    />
+
+    <div>
+      <p>Search String: {{ searchString() }}</p>
+
+      <input type="text" (input)="setSearchString($event)" />
+
+      <!-- filteredUsers -->
+
+      <button (click)="addUser()">Add User</button>
+      <ul>
+        @for (user of filteredUsers(); track $index) {
+        <li>
+          {{ user.name }}
+        </li>
+        }
+      </ul>
+
+      <!-- add count -->
+
+      <p>{{ count() }}</p>
+
+      <button (click)="increment()">Increment</button>
+    </div>
   </ul>
 </div>

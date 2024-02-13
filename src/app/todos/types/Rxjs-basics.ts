@@ -137,8 +137,57 @@ behaviorSubject.next(3);
 // A hot observable is an observable that is already producing values before a subscription is created.
 // a hot observable : produces values even if there are no subscribers.(producer created outside the stream)
 // hot observable - is multicast.
+// multicast means that the observable is shared among multiple subscribers.
+// hot observable is like live youtube video. it is already producing values before a subscription is created.
 
 // what is cold observable?
 // A cold observable is an observable that only begins producing values when a subscription is created.
 // a cold observable : produces values only if there are subscribers.(producer created inside the stream)
 // cold observable - is unicast.
+// unicast means that the observable is not shared among multiple subscribers.
+// cold observable is like a recorded video. it only starts producing values when a subscription is created.
+
+//memory leak in rxjs
+// what is memory leak?
+// A memory leak is a type of resource leak that occurs when a computer program incorrectly manages memory allocations in such a way that memory which is no longer needed is not released.
+// it when your program manages inCorrectly the memory and user more memory than it needs.
+// how to prevent memory leak in rxjs?
+// 1. unsubscribe from the observable when you are done with it.
+// 2. use takeUntil operator to unsubscribe from the observable.
+// 3. use takeWhile operator to unsubscribe from the observable.
+// 4. use take operator to unsubscribe from the observable.
+// 5. use finalize operator to unsubscribe from the observable.
+// 6. use share operator to share the observable among multiple subscribers.
+
+// flattening operators in rxjs
+// what is flattening operators & when to use them?
+// flattening operators are used to flatten the nested observables.
+// flattening operators are used when you have nested observables.
+
+// name some flattening operators?
+// 1. mergeMap
+// 2. switchMap
+// 3. concatMap
+// 4. exhaustMap
+
+//name the difference between mergeMap, switchMap, concatMap, exhaustMap?
+
+// mergeMap
+// 1. mergeMap is used to merge the nested observables.
+// 2. mergeMap does not cancel the previous observables.
+// 3. mergeMap is used when you want to merge the nested observables.
+
+// switchMap
+// 1. switchMap is used to switch to the latest observable.
+// 2. switchMap cancels the previous observables.
+// 3. switchMap is used when you want to switch to the latest observable.
+
+// concatMap
+// 1. concatMap is used to concat the nested observables.
+// 2. concatMap does not cancel the previous observables.
+// 3. concatMap is used when you want to concat the nested observables.
+
+// exhaustMap
+// 1. exhaustMap is used to ignore the nested observables.
+// 2. exhaustMap ignores the previous observables.
+// 3. exhaustMap is used when you want to ignore the previous observables.
