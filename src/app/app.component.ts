@@ -5,6 +5,7 @@ import { BannerComponent } from './banner/banner.component';
 import { HeavyComponentComponent } from './heavy-component/heavy-component.component';
 import { FooterComponentComponent } from './footer-component/footer-component.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
+import { SharedModule } from './pipe/shared.module';
 
 interface Food {
   value: string;
@@ -21,6 +22,7 @@ interface Food {
     HeavyComponentComponent,
     FooterComponentComponent,
     HomeComponentComponent,
+    SharedModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

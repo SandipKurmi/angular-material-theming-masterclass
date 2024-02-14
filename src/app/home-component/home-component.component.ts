@@ -1,10 +1,12 @@
 import { Component, OnInit, computed, signal } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { User } from '../modals/user';
-import { interval, mergeMap, share, single, take } from 'rxjs';
-import { ReactiveFormsModule } from '@angular/forms';
+import { mergeMap } from 'rxjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../pipe/shared.module';
+import { TimestampDirective } from './directive/timestamp.directive';
 
 // { name: 'John Doe', age: 25 }
 
@@ -18,7 +20,13 @@ interface Post {
 @Component({
   selector: 'app-home-component',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule,
+    FormsModule,
+    TimestampDirective,
+  ],
   templateUrl: './home-component.component.html',
   styleUrl: './home-component.component.scss',
 })
@@ -29,6 +37,17 @@ export class HomeComponentComponent implements OnInit {
   subjectData: number[] = [];
   postList: Post[] = [];
   searchInput = new FormControl('');
+  timestamp: number = 1706812329000;
+
+  // 5 user with name and age with create at of timestamp
+
+  userList = [
+    { name: 'John Doe', age: 25, createdAt: 1706812329000 },
+    { name: 'John Doe', age: 25, createdAt: 1706812329000 },
+    { name: 'John Doe', age: 25, createdAt: 1706812329000 },
+    { name: 'John Doe', age: 25, createdAt: 1706812329000 },
+    { name: 'John Doe', age: 25, createdAt: 1706812329000 },
+  ];
 
   searchString = signal('');
 
@@ -51,8 +70,29 @@ export class HomeComponentComponent implements OnInit {
     );
   });
 
+  date = signal(1706812329);
+
   setSearchString(event: Event) {
     this.searchString.set((event.target as HTMLInputElement).value);
+  }
+
+  setDate($event: Event) {
+    console.log(this.timestamp);
+    const selectedDate = (<HTMLInputElement>$event.target).value;
+    console.log(selectedDate);
+
+    this.timestamp = new Date(selectedDate).getTime();
+
+    console.log(this.timestamp);
+  }
+
+  // setUserDate
+
+  setUserDate($event: Event, index: number) {
+    console.log(this.userList[index].createdAt);
+    const selectedDate = (<HTMLInputElement>$event.target).value;
+    console.log(selectedDate);
+    this.userList[index].createdAt = new Date(selectedDate).getTime();
   }
 
   addUser() {
@@ -133,4 +173,7 @@ export class HomeComponentComponent implements OnInit {
       },
     });
   }
+
+  createUser() {}
+  updateUser() {}
 }

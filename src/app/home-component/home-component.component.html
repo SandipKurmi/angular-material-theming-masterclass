@@ -45,6 +45,39 @@
       <p>{{ count() }}</p>
 
       <button (click)="increment()">Increment</button>
+
+      <!-- date input -->
+
+      <!-- <input type="date" [(ngModel)]="timestamp" (input)="setDate($event)" /> -->
+      <input type="date" [appTimestamp]="timestamp" (input)="setDate($event)" />
+      <p>{{ date() }}</p>
     </div>
+
+    @for (user of userList; track $index) {
+    <form #form="ngForm">
+      <input type="text" name="name" [(ngModel)]="user.name" />
+      <input type="number" name="age" [(ngModel)]="user.age" />
+      <input
+        type="date"
+        name="createdAt"
+        [appTimestamp]="user.createdAt"
+        (input)="setUserDate($event, $index)"
+      />
+      <button (click)="createUser()">Create</button>
+      <button (click)="updateUser()">Update</button>
+    </form>
+    }
+
+    <!-- userList -->
+
+    <ul>
+      @for (user of userList; track $index) {
+      <li>
+        <span>{{ user.name }}</span>
+        <span>{{ user.age }}</span>
+        <span>{{ user.createdAt }}</span>
+      </li>
+      }
+    </ul>
   </ul>
 </div>
